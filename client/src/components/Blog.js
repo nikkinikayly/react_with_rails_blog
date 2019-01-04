@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import BlogForm from './BlogForm';
 import PostForm from './PostForm';
-import { Header, Icon, Segment, Button } from 'semantic-ui-react';
+import Posts from './Posts'
+import { Segment } from 'semantic-ui-react';
 
 class Blog extends React.Component {
     state = { blog: {}, posts: [], edit: false, showForm: false, }
@@ -54,25 +55,6 @@ class Blog extends React.Component {
         return <PostForm submit={this.submit} />
     }
 
-    renderPosts = () => {
-        return this.state.posts.map(p => {
-            return (
-                <Segment key={p.id}>
-                <Header as="h2">{p.name}</Header>
-                <Header as="h3">{p.description}</Header>
-                <p>{p.body}</p>
-                <p style={{color: 'grey'}}>{p.date}</p>
-                <Button
-                    icon
-                    color="red"
-                    size="small"
-                    onClick={() => this.deletePost(p.id)}
-                ><Icon name="trash" />
-                </Button>
-                </Segment>
-            )
-        })
-    }
 
     render() {
         const { edit } = this.state
@@ -81,6 +63,9 @@ class Blog extends React.Component {
             <Segment style={{margin: '15px'}}>
                 {edit ? this.edit() : this.showBlog()}
                 <button onClick={this.toggleEdit}>{ edit? 'Cancel' : 'Edit Title'}</button>
+            </Segment>
+            <Segment>
+                <Posts {...this.props}/>
             </Segment>
             </div>
         )

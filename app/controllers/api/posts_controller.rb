@@ -33,13 +33,13 @@ class Api::PostsController < ApplicationController
     
     private
         def set_blog
-            @blog = blog.find(params[:blog_id])
+            @blog = Blog.find(params[:blog_id])
         end
         def set_post
         @post = @blog.posts.find(params[:id])
         end
     
         def post_params
-        params.require(:post).permit(:name, :price, :complete)
+        params.require(:post).permit(:name, :description, :body, :date)
         end
 end
