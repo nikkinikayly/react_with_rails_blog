@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PostForm from './PostForm';
 import { Header, Segment, Button, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 class Posts extends React.Component {
     state = { posts: [], showForm: false, edit: false }
@@ -50,6 +51,8 @@ class Posts extends React.Component {
     renderPosts = () => {
         return this.state.posts.map(p => {
             return (
+                
+                <div {...this.props} >
                 <Segment key={p.id} style={{textAlign: 'left'}}>
                 <Header as="h2">{p.name}</Header>
                 <Segment>
@@ -57,12 +60,9 @@ class Posts extends React.Component {
                 <p>{p.body}</p>
                 <p style={{color: 'grey'}}>{p.date}</p>
                 </Segment>
-                <Button
-                    icon 
-                    color="blue"
-                    size="small"
-                    onClick={() => this.toggleEdit}
-                >Edit</Button>
+                <Button>
+                    <Link to={`/blogs/${this.props.match.params.id}/posts/${p.id}`}>Edit</Link>
+                </Button>
                 <Button
                     icon
                     color="red"
@@ -71,6 +71,7 @@ class Posts extends React.Component {
                 ><Icon name="trash" />
                 </Button>
                 </Segment>
+                </div>
             )
         })
     }
@@ -84,12 +85,11 @@ class Posts extends React.Component {
     }
 
     render() {
-        const { showForm, edit } = this.state
+        const { showForm } = this.state
         return (
             <div>
                 <button onClick={this.toggleForm}>{ showForm ? 'Hide' : 'Add Post' }</button>
                 {showForm ? this.form() : this.renderPosts()}
-                {edit ? this.form() : this.renderPosts()}
             </div>
         )
     }

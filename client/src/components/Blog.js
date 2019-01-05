@@ -35,7 +35,7 @@ class Blog extends React.Component {
     }
 
     edit = () => {
-        return <BlogForm {...this.state.list} submit={this.submit} />
+        return <BlogForm {...this.state.blog} submit={this.submit} />
     }
 
     submit = (blog) => {

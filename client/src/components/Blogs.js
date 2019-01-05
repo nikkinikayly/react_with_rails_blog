@@ -40,27 +40,29 @@ class Blogs extends React.Component {
             return (
                 
                 <Grid.Column>
-                <Card key={p.id}>
-                <Card.Content>
-                    <Header as="h3">
-                        <Link
-                            to={`/blogs/${p.id}`}
-                            >{p.title}</Link>
-                    </Header>
-                    <p>{p.category}</p>
-                </Card.Content>
-                <Card.Content>
-                <Button
-                    icon
-                    color="red"
-                    size="small"
-                    onClick={() => this.deleteBlog(p.id)}
-                    style={{marginLeft: "16px"}}
-                >
-                    <Icon name="trash" />
-                </Button>
-                </Card.Content>
-                </Card>
+                <div key={p.id}>
+                    <Card>
+                    <Card.Content>
+                        <Header as="h3">
+                            <Link
+                                to={`/blogs/${p.id}`}
+                                >{p.title}</Link>
+                        </Header>
+                        <p>{p.category}</p>
+                    </Card.Content>
+                    <Card.Content>
+                    <Button
+                        icon
+                        color="red"
+                        size="small"
+                        onClick={() => this.deleteBlog(p.id)}
+                        style={{marginLeft: "16px"}}
+                    >
+                        <Icon name="trash" />
+                    </Button>
+                    </Card.Content>
+                    </Card>
+                </div>
                 </Grid.Column>
                
             )
